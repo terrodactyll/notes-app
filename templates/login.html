@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+
+<div class="card p-4 shadow" style="width: 26rem;">
+    <div class="text-center mb-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Font_Awesome_5_solid_university.svg/1200px-Font_Awesome_5_solid_university.svg.png" width="50" alt="Logo">
+        <h4 class="mt-2">Log In</h4>
+        <small>Don't have an account? <a href="/register">Sign up for free!</a></small>
+    </div>
+
+    <form method="POST" action="/login">
+        <div class="mb-3">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" required>
+        </div>
+
+        <div class="mb-3 position-relative">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" id="password" required>
+            <span class="position-absolute top-50 end-0 translate-middle-y px-3" style="cursor:pointer;" onclick="togglePassword()">👁️</span>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="keepLoggedIn" name="remember">
+            <label class="form-check-label" for="keepLoggedIn">Keep me logged in</label>
+        </div>
+
+        <div class="mb-3">
+            <a href="#" class="small">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Log in</button>
+    </form>
+</div>
+
+<script>
+function togglePassword() {
+    const pw = document.getElementById("password");
+    pw.type = pw.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>
+

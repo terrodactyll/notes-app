@@ -1,0 +1,11 @@
+<h2>Notes</h2>
+<form method="POST" action="/add">
+    <input name="content" placeholder="New note">
+    <button type="submit">Add</button>
+</form>
+<ul>
+    {% for note in notes %}
+        <li>{{ note.content }} - <a href="/delete/{{ note.id }}">Delete</a></li>
+    {% endfor %}
+</ul>
+<a href="/logout">Logout</a>
