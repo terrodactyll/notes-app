@@ -54,16 +54,18 @@ jobs:
           nohup python app.py &
           sleep 10
 
-      - name: Run OWASP ZAP Baseline Scan
+      - name: Run OWASP ZAP Baseline Scan (Generate Reports Only)
         uses: zaproxy/action-baseline@v0.10.0
         with:
           target: 'http://localhost:5000'
-          artifact_name: 'zap-baseline-report'
+          # Remove artifact_name here as we will handle upload manually
+          # The action will still generate report files (e.g., report_json.json, report_md.md, report_html.html)
+          # in the workspace as seen in your logs.
 
-      - name: Upload ZAP Scan Artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload ZAP Scan Reports
+        uses: actions/upload-artifact@v3 # Use native GitHub action for uploading artifacts
         with:
-          name: zap-scan-results
+          name: zap-scan-reports
           path: |
             report_json.json
             report_md.md
