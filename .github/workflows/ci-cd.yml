@@ -59,3 +59,12 @@ jobs:
         with:
           target: 'http://localhost:5000'
           artifact_name: 'zap-baseline-report'
+
+      - name: Upload ZAP Scan Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap-scan-results
+          path: |
+            report_json.json
+            report_md.md
+            report_html.html
