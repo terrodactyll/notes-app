@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 import os
 from models import db, User, Note
 
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY', 'dev')
+app.secret_key = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///notes.db'
 db.init_app(app)
+database_url = os.getenv('DATABASE_URL')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -56,7 +58,6 @@ def logout():
     logout_user()
     session.clear()
     return redirect("/login")
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
